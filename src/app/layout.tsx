@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ReactNode } from 'react';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import theme from '../theme';
@@ -32,13 +32,10 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AppRouterCacheProvider>
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-
-              {children}
-                        </ThemeProvider>
-          </StyledEngineProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
