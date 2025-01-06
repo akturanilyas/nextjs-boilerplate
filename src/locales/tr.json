@@ -1,0 +1,5 @@
+{
+  "test": "Merhaba Dünya",
+  "test2": "Merhaba {{name}}",
+  "test3": "Merhaba {{name}} {{surname}}"
+}
