@@ -1,0 +1,5 @@
+{
+  "test": "Hello World",
+  "test2": "Hello {{name}}",
+  "test3": "Hello {{name}} {{surname}}"
+}

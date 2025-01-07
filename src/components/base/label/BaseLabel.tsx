@@ -1,11 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { BaseLabelProps } from './BaseLabel.interface';
+import BaseText from '@/components/base/text/BaseText';
 
 const BaseLabel: FC<BaseLabelProps> = (props) => {
   const { name, text, className, htmlFor, isRequired } = props;
   const labelRef = useRef<HTMLLabelElement>(null);
-  const [isTextTruncated, setIsTextTruncated] = useState(false);
 
   const classes = twMerge(`
     text-slate-600 
@@ -20,16 +20,10 @@ const BaseLabel: FC<BaseLabelProps> = (props) => {
     ${className || ''}
   `);
 
-  useEffect(() => {
-    const labelElement = labelRef.current;
-
-    if (labelElement) {
-      setIsTextTruncated(labelElement.scrollWidth > labelElement.clientWidth);
-    }
-  }, [text]);
-
   return (
     <label ref={labelRef} data-testid={`label.${name || 'test-id'}`} htmlFor={htmlFor} className={classes}>
+      {/* TODO implement translate */}
+      {text}
       {isRequired && <BaseText className={textClasses} text={'*'} />}
     </label>
   );
