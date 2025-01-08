@@ -1,25 +1,23 @@
 'use client';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/base/button/Button';
 import Form from '@/components/base/form/Form';
 import { Input } from '@/components/form-elements/input/Input';
-import { Radio } from '@/components/form-elements/radio/Radio.';
+import { Radio } from '@/components/form-elements/radio/Radio';
 import Select from '@/components/form-elements/select/Select';
-import BasicSelect from '@/components/form-elements/select/Testing';
 
 export const ExampleForm: FC = () => {
   const form = useForm();
 
   return (
-    <Form onSubmit={form.handleSubmit((data) => console.log(data))}>
+    <Form className={'flex flex-col gap-8'} onSubmit={form.handleSubmit((data) => console.log(data))}>
       <Input
         form={form}
         name={'input'}
         label={'Input Test'}
         placeholder={'Input Placeholder'}
-        defaultValue={'Input Default Value'}
       />
       <Radio
         form={form}
@@ -39,7 +37,6 @@ export const ExampleForm: FC = () => {
           { label: 'Select 2', value: 'select-2' },
         ]}
       />
-        <BasicSelect></BasicSelect>
       <Button type='submit' className='w-full'>
         Submit
       </Button>

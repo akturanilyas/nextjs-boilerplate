@@ -1,10 +1,5 @@
-import { SelectProps } from '@mui/material';
-import { BaseSelectItemProps } from '@/components/base/select/BaseSelectItem.interface';
-import { ExtendButtonBase } from '@mui/material/ButtonBase';
-import { MenuItemTypeMap } from '@mui/material/MenuItem/MenuItem';
+import { DropdownProps } from 'primereact/dropdown';
 
-export type BaseSelectProps = SelectProps & {
-  options: Array<BaseSelectItemProps>;
+export type BaseSelectProps = Omit<DropdownProps, 'optionLabel'| 'form'> & {
   label?: string;
-  menuItemProps?: ExtendButtonBase<MenuItemTypeMap>
 };

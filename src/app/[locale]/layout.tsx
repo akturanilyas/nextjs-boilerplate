@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ReactNode } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import initTranslations from '@/utils/i18n';
 import { TranslationsProvider } from '@/providers/TranslationProvider';
-
-import theme from '../../theme';
 import '../globals.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+
+import { PrimeReactProvider } from 'primereact/api';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,14 +36,9 @@ export default async function RootLayout(
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-700`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-700 antialiased`}>
         <TranslationsProvider locale={locale} resources={resources}>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              {children}
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <PrimeReactProvider>{children}</PrimeReactProvider>
         </TranslationsProvider>
       </body>
     </html>

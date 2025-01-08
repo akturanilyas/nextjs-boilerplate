@@ -14,12 +14,12 @@ export const Select: FC<SelectProps> = (props) => {
       render={({ field }) => (
         <BaseSelect
           name={name}
-          onChange={(event, child) => {
-            field.onChange(event, child);
-            onChange?.(event, child);
-          }}
           className={className}
           {...rest}
+          onChange={(event) => {
+            field.onChange(event.target.value);
+            onChange?.(event.target.value);
+          }}
           value={field.value}
         />
       )}

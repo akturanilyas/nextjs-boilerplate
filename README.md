@@ -3,7 +3,6 @@ TODOS
 - [x] Implement `i18n`
 - [x] Add `@tanstack/react-query` for data fetching
 - [x] Tailwind CSS
-- [x] Material UI
 - [ ] Add core components
 - [ ] Style components
 - [ ] Implement react-scan

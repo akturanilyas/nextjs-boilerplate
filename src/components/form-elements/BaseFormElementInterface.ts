@@ -4,4 +4,5 @@ export type BaseFormElementProps = {
   name: string;
   form: UseFormReturn;
   label?: string;
+  defaultValue?: unknown;
 };

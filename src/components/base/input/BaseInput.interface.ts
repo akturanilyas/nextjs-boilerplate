@@ -1,6 +1,6 @@
-import { TextFieldProps } from '@mui/material/TextField/TextField';
+import { InputTextProps } from 'primereact/inputtext';
 
-export type BaseInputProps = TextFieldProps & {
+export type BaseInputProps = Omit<InputTextProps, 'form'> & {
   label?: string;
   className?: string;
   inputClassName?: string;

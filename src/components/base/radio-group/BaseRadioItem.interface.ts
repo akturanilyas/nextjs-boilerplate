@@ -1,8 +1,9 @@
-import { RadioProps } from '@mui/material';
+import { RadioButtonProps } from 'primereact/radiobutton';
 
-export type BaseRadioItemProps = RadioProps & RadioOption;
+export type BaseRadioItemProps = RadioButtonProps & RadioOption;
 
 export type RadioOption = {
   label: string;
   value: string;
+  className?: string;
 };

@@ -7,7 +7,6 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   corePlugins: {
-    preflight: false,
   },
   theme: {},
   plugins: [],
