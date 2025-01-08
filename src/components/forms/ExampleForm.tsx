@@ -4,8 +4,9 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/base/button/Button';
 import Form from '@/components/base/form/Form';
-import { Input } from '@/components/form-elements/Input';
-import BaseRadioGroup from '@/components/base/radio-group/BaseRadioGroup';
+import { Input } from '@/components/form-elements/input/Input';
+import { Radio } from '@/components/form-elements/radio/Radio.';
+import Select from '@/components/form-elements/select/Select';
 
 export const ExampleForm: FC = () => {
   const form = useForm();
@@ -14,14 +15,26 @@ export const ExampleForm: FC = () => {
 
   return (
     <Form form={form}>
-      <Input name={'test1'} label={'label1'} placeholder={'placeholder'} />
-      <BaseRadioGroup
-        defaultValue={'value'}
+      <Input
+        name={'input'}
+        label={'Input Test'}
+        placeholder={'Input Placeholder'}
+        defaultValue={'Input Default Value'}
+      />
+      <Radio
+        defaultValue={'radio-1'}
         options={[
-          { label: 'label', value: 'value' },
-          { label: 'label1', value: 'value2' },
+          { label: 'Radio 1', value: 'radio-1' },
+          { label: 'Radio 2', value: 'radio-2' },
         ]}
-        name={'test2'}
+        name={'radio'}
+      />
+      <Select
+        name={'Select'}
+        options={[
+          { label: 'Select', value: 'select-1' },
+          { label: 'Select 2', value: 'select-2' },
+        ]}
       />
       <Button type='submit' className='w-full'>
         Submit

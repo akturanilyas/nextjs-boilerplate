@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { type BaseRadioProps } from '@/components/base/radio/BaseRadio.interface';
 import BaseView from '@/components/base/view/BaseView';
 import { Radio } from '@mui/material';
 import BaseLabel from '@/components/base/label/BaseLabel';
 import { cn } from '@/utils/common.util';
+import { type BaseRadioItemProps } from '@/components/base/radio-group/BaseRadioItem.interface';
 
-export const BaseRadio: FC<BaseRadioProps> = (props) => {
+export const BaseRadioItem: FC<BaseRadioItemProps> = (props) => {
   const { name, label, className } = props;
 
   const classes = cn('flex flex-row justify-items-center items-center', className);
@@ -18,4 +18,4 @@ export const BaseRadio: FC<BaseRadioProps> = (props) => {
   );
 };
 
-export default BaseRadio;
+export default BaseRadioItem;

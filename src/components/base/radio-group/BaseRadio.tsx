@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import BaseView from '@/components/base/view/BaseView';
 import { RadioGroup } from '@mui/material';
-import BaseRadio from '@/components/base/radio/BaseRadio';
-import { BaseRadioGroupsProps } from '@/components/base/radio-group/BaseRadioGroup.interface';
+import BaseRadioItem from '@/components/base/radio-group/BaseRadioItem';
 import { cn } from '@/utils/common.util';
+import { BaseRadioProps } from '@/components/base/radio-group/BaseRadio.interface';
 
-export const BaseRadioGroup: FC<BaseRadioGroupsProps> = (props) => {
+export const BaseRadio: FC<BaseRadioProps> = (props) => {
   const { className, options, ...rest } = props;
 
   const classes = cn('flex flex-row flex-wrap', className);
@@ -19,11 +19,11 @@ export const BaseRadioGroup: FC<BaseRadioGroupsProps> = (props) => {
     >
       <BaseView className={classes}>
         {options.map((option) => (
-          <BaseRadio key={option.value} {...option} name={option.value} />
+          <BaseRadioItem key={option.value} {...option} name={option.value} />
         ))}
       </BaseView>
     </RadioGroup>
   );
 };
 
-export default BaseRadioGroup;
+export default BaseRadio;

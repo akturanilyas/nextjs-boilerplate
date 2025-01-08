@@ -1,20 +1,21 @@
 import { BaseSelectProps } from '@/components/base/select/BaseSelect.interface';
-import { Select } from '@mui/material';
+import { Checkbox, ListItemText, MenuItem, Select } from '@mui/material';
 import { cn } from '@/utils/common.util';
 import BaseView from '@/components/base/view/BaseView';
 import BaseLabel from '@/components/base/label/BaseLabel';
-import BaseSelectItem from '@/components/base/select/BaseSelectItem';
 
 export const BaseSelect = (props: BaseSelectProps) => {
-  const { className, label, name, options, ...rest } = props;
+  const { className, label, name, options, menuItemProps, ...rest } = props;
   const classes = cn('flex flex-row justify-items-center items-center', className);
 
   return (
     <BaseView className={classes}>
       {label && <BaseLabel htmlFor={`${name || 'name'}`} text={label} />}
-      <Select variant={'outlined'} {...rest}>
+      <Select className={'w-60'} {...rest}>
         {options.map((option) => (
-          <BaseSelectItem key={option.value?.toString()} {...option} />
+          <MenuItem key={option.value?.toString()} {...menuItemProps} value={option.value}>
+            <ListItemText primary={option.label} />
+          </MenuItem>
         ))}
       </Select>
     </BaseView>
