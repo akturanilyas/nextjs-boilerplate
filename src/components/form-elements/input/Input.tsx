@@ -5,12 +5,13 @@ import { InputProps } from '@/components/form-elements/input/Input.interface';
 import { Controller } from 'react-hook-form';
 
 export const Input: FC<InputProps> = (props) => {
-  const { name, onChange, control, ...rest } = props;
+  const { name, onChange, form, defaultValue, ...rest } = props;
 
   return (
     <Controller
-      control={control}
+      control={form.control}
       name={name}
+      defaultValue={defaultValue || ''}
       render={({ field }) => (
         <BaseView>
           <BaseInput

@@ -13,7 +13,7 @@ const BaseLabel: FC<BaseLabelProps> = (props) => {
   const textClasses = cn(className);
 
   return (
-    <FormLabel data-testid={`label.${name || 'test-id'}`} htmlFor={htmlFor} className={classes}>
+    <FormLabel id={`label.${name || 'test-id'}`} data-testid={`label.${name || 'test-id'}`} htmlFor={htmlFor} className={classes}>
       <Trans i18nKey={text} />
       {isRequired && <BaseText className={textClasses} text={'*'} />}
     </FormLabel>

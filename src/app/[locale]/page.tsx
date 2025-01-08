@@ -9,7 +9,7 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   await initServerTranslations({ locale });
 
   return (
-    <div className='justify-items-center'>
+    <div className='justify-items-center p-4'>
       <ExampleForm />
     </div>
   );

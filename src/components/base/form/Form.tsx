@@ -1,12 +1,7 @@
-import { FieldValues, FormProvider, UseFormReturn } from 'react-hook-form';
-import { PropsWithChildren } from 'react';
+import { HTMLAttributes, PropsWithChildren } from 'react';
 
-export type FormProps<T extends FieldValues> = PropsWithChildren<{
-  form: UseFormReturn<T>;
-}>;
+export type FormProps = PropsWithChildren & HTMLAttributes<HTMLFormElement>;
 
-const Form = <T extends FieldValues>({ form, children }: FormProps<T>) => (
-  <FormProvider {...form}>{children}</FormProvider>
-);
+const Form = ({ children, ...rest }: FormProps) => <form {...rest}>{children}</form>;
 
 export default Form;

@@ -4,21 +4,22 @@ import BaseSelect from '@/components/base/select/BaseSelect';
 import { Controller } from 'react-hook-form';
 
 export const Select: FC<SelectProps> = (props) => {
-  const { className, control, name, onChange, defaultValue } = props;
+  const { className, form, name, onChange, defaultValue, ...rest } = props;
 
   return (
     <Controller
-      control={control}
+      control={form.control}
       name={name}
       defaultValue={defaultValue || ''}
       render={({ field }) => (
         <BaseSelect
+          name={name}
           onChange={(event, child) => {
             field.onChange(event, child);
             onChange?.(event, child);
           }}
           className={className}
-          {...props}
+          {...rest}
           value={field.value}
         />
       )}

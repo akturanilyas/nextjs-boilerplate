@@ -1,7 +1,7 @@
-import { Control } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 export type BaseFormElementProps = {
   name: string;
-  control?: Control;
+  form: UseFormReturn;
   label?: string;
 };
