@@ -1,14 +1,13 @@
 import 'server-only';
-import { Locale } from '@/i18nConfig';
+
 import { getRequestContext, setRequestContext } from '@/contexts/server-context';
 import { LOCALE_KEY, TRANSLATION_KEY } from '@/constants/cache-constants';
 
-export const getTranslations = async (locale: Locale) => {
-  const translation = import(`@/locales/${locale}.json`).then((module) => module.default);
-
-  return translation;
-};
-
+/**
+ * Translation on server side
+ *
+ * @param key string
+ */
 export const translate = (key: string) => {
   const translationStr = getRequestContext(TRANSLATION_KEY);
   const translation = translationStr ? JSON.parse(translationStr as string) : {};
@@ -29,7 +28,7 @@ export const translate = (key: string) => {
 
 export const initServerTranslations = async ({ locale }: { locale: string }) => {
   setRequestContext(LOCALE_KEY, locale);
-  const translation = await getTranslations(locale);
+  const translation = import(`@/locales/${locale}.json`).then((module) => module.default);
 
   setRequestContext(TRANSLATION_KEY, JSON.stringify(translation));
 };

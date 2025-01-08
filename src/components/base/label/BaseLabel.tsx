@@ -1,31 +1,22 @@
-import { FC, useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { FC } from 'react';
 import { BaseLabelProps } from './BaseLabel.interface';
 import BaseText from '@/components/base/text/BaseText';
+import Trans from '@/components/base/text/Trans';
+import { FormLabel } from '@mui/material';
+import { cn } from '@/utils/common.util';
 
 const BaseLabel: FC<BaseLabelProps> = (props) => {
   const { name, text, className, htmlFor, isRequired } = props;
-  const labelRef = useRef<HTMLLabelElement>(null);
 
-  const classes = twMerge(`
-    text-slate-600 
-    dark:text-slate-200
-    text-xs
+  const classes = cn('text-xs', className);
 
-    ${className || ''}
-    text-ellipsis flex-wrap whitespace-nowrap max-w-[200px] truncate
-  `);
-
-  const textClasses = twMerge(`
-    ${className || ''}
-  `);
+  const textClasses = cn(className);
 
   return (
-    <label ref={labelRef} data-testid={`label.${name || 'test-id'}`} htmlFor={htmlFor} className={classes}>
-      {/* TODO implement translate */}
-      {text}
+    <FormLabel data-testid={`label.${name || 'test-id'}`} htmlFor={htmlFor} className={classes}>
+      <Trans i18nKey={text} />
       {isRequired && <BaseText className={textClasses} text={'*'} />}
-    </label>
+    </FormLabel>
   );
 };
 

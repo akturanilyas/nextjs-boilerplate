@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import { Button as MuiButton } from '@mui/material';
 import { ButtonProps } from '@/components/base/button/Button.type';

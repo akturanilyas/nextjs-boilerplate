@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Input } from '@mui/material';
+import { TextField } from '@mui/material';
 import BaseView from '@/components/base/view/BaseView';
 import BaseLabel from '@/components/base/label/BaseLabel';
 import { BaseInputProps } from '@/components/base/input/BaseInput.interface';
@@ -11,7 +11,7 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
   return (
     <BaseView className={className}>
       {label && <BaseLabel text={label} />}
-      <Input className={input({ className: inputClassName })} {...restProps} />
+      <TextField variant={'outlined'} className={input({ className: inputClassName })} {...restProps} />
     </BaseView>
   );
 };

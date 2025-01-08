@@ -1,9 +1,7 @@
-'use client';
-
 import { FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { TextProps } from './BaseText.interface';
-import { Trans } from 'react-i18next';
+import Trans from '@/components/base/text/Trans';
 
 const BaseText: FC<TextProps> = (props) => {
   const { text, options, className, customContent } = props;
@@ -14,7 +12,6 @@ const BaseText: FC<TextProps> = (props) => {
     ${className || ''}
   `);
 
-  // TODO remove use client
   return (
     <span className={classes}>
       <Trans i18nKey={text} values={options}>

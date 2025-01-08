@@ -38,7 +38,7 @@ export default async function RootLayout(
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-700`}>
         <TranslationsProvider locale={locale} resources={resources}>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>

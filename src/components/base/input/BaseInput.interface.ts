@@ -1,6 +1,6 @@
-import { InputProps } from '@mui/material';
+import { TextFieldProps } from '@mui/material/TextField/TextField';
 
-export type BaseInputProps = InputProps & {
+export type BaseInputProps = TextFieldProps & {
   label?: string;
   className?: string;
   inputClassName?: string;
