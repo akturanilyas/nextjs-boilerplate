@@ -11,10 +11,12 @@ export const BaseRadioItem: FC<BaseRadioItemProps> = (props) => {
 
   const classes = cn('flex flex-row justify-items-center items-center gap-2', className);
 
+  const htmlFor = `label.${value || 'name'}`;
+
   return (
     <BaseView className={classes}>
-      <RadioButton inputId={`${name || 'name'}`} name={name} value={value} {...rest} />
-      <BaseLabel htmlFor={`${name || 'name'}`} text={label} />
+      <RadioButton inputId={htmlFor} name={name} value={value} {...rest} />
+      <BaseLabel htmlFor={htmlFor} text={label} />
     </BaseView>
   );
 };

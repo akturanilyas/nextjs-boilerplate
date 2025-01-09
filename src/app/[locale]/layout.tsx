@@ -4,9 +4,8 @@ import { ReactNode } from 'react';
 import initTranslations from '@/utils/i18n';
 import { TranslationsProvider } from '@/providers/TranslationProvider';
 import '../globals.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
-
 import { PrimeReactProvider } from 'primereact/api';
+import Tailwind from 'primereact/passthrough/tailwind';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,7 +37,7 @@ export default async function RootLayout(
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-700 antialiased`}>
         <TranslationsProvider locale={locale} resources={resources}>
-          <PrimeReactProvider>{children}</PrimeReactProvider>
+          <PrimeReactProvider value={{ pt: Tailwind }}>{children}</PrimeReactProvider>
         </TranslationsProvider>
       </body>
     </html>

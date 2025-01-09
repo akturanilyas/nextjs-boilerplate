@@ -37,8 +37,8 @@ export const ExampleForm: FC = () => {
           { label: 'Select 2', value: 'select-2' },
         ]}
       />
-      <Button type='submit' className='w-full'>
-        Submit
+      <Button label={'submit'} type='submit' className='w-full'>
+
       </Button>
     </Form>
   );
