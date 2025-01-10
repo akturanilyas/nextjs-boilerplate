@@ -1,21 +1,16 @@
-import { ForwardedRef, forwardRef } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { BaseViewProps } from './BaseView.interface';
+import { cn } from '@/utils/common.util';
 
-const BaseView = forwardRef((props: BaseViewProps, ref: ForwardedRef<HTMLDivElement>) => {
+const BaseView = (props: BaseViewProps) => {
   const { className } = props;
 
-  const classes = twMerge(`
-    flex
-    flex-col
-    ${className || ''}
-  `);
+  const classes = cn('flex flex-col', className);
 
   return (
-    <div {...props} ref={ref} className={classes}>
+    <div {...props} className={classes}>
       {props.children}
     </div>
   );
-});
+};
 
 export default BaseView;
