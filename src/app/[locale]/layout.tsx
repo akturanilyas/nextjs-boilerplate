@@ -6,6 +6,9 @@ import { TranslationsProvider } from '@/providers/TranslationProvider';
 import '../globals.css';
 import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
+import SideMenu from '@/components/side-menu/SideMenu';
+import BaseView from '@/components/base/view/BaseView';
+import Header from '@/components/header/Header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,10 +37,16 @@ export default async function RootLayout(
   const { resources } = await initTranslations({ locale });
 
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-700 antialiased`}>
+    <html lang={locale} className={'!bg-black w-full'}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-700 antialiased w-full`}>
         <TranslationsProvider locale={locale} resources={resources}>
-          <PrimeReactProvider value={{ pt: Tailwind }}>{children}</PrimeReactProvider>
+          <PrimeReactProvider value={{ pt: Tailwind }}>
+            <Header/>
+            <BaseView className={'flex-row w-full'}>
+              <SideMenu />
+              {children}
+            </BaseView>
+          </PrimeReactProvider>
         </TranslationsProvider>
       </body>
     </html>
