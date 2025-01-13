@@ -29,3 +29,16 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.p-hidden-accessible {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.p-overflow-hidden {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width);
+}

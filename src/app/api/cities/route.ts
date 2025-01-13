@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   const cities = [
     { label: 'Adana', value: 1 },
     { label: 'Adıyaman', value: 2 },
@@ -76,5 +76,5 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     { label: 'Zonguldak', value: 67 },
   ];
 
-  return res.send(cities);
+  return NextResponse.json(cities);
 }
