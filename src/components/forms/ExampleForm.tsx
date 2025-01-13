@@ -7,18 +7,19 @@ import Form from '@/components/base/form/Form';
 import { Input } from '@/components/form-elements/input/Input';
 import { Radio } from '@/components/form-elements/radio/Radio';
 import Select from '@/components/form-elements/select/Select';
+import { useUserState } from '@/states/user';
+import { useCities } from '@/queries/CityQueries';
 
 export const ExampleForm: FC = () => {
   const form = useForm();
+  const { data: user } = useUserState();
+  const { data: cities } = useCities();
+
+  console.log(cities);
 
   return (
     <Form className={'flex flex-col gap-8'} onSubmit={form.handleSubmit((data) => console.log(data))}>
-      <Input
-        form={form}
-        name={'input'}
-        label={'Input Test'}
-        placeholder={'Input Placeholder'}
-      />
+      <Input form={form} name={'input'} label={'Input Test'} placeholder={'Input Placeholder'} />
       <Radio
         form={form}
         defaultValue={'radio-1'}
@@ -37,9 +38,10 @@ export const ExampleForm: FC = () => {
           { label: 'Select 2', value: 'select-2' },
         ]}
       />
-      <Button label={'submit'} type='submit' className='w-full'>
 
-      </Button>
+      <Select form={form} label={'City'} name={'city'} options={cities || []} className={'max-h-96'} />
+
+      <Button label={'submit'} type='submit' className='w-full'></Button>
     </Form>
   );
 };

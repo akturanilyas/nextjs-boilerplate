@@ -3,12 +3,14 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 import initTranslations from '@/utils/i18n';
 import { TranslationsProvider } from '@/providers/TranslationProvider';
-import '../globals.css';
-import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
 import SideMenu from '@/components/side-menu/SideMenu';
 import BaseView from '@/components/base/view/BaseView';
 import Header from '@/components/header/Header';
+import Providers from '@/providers/Providers';
+import { StyleProvider } from '@/providers/StyleProvider';
+import '../globals.css';
+import LoadingProvider from '@/providers/LoadingProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,17 +39,20 @@ export default async function RootLayout(
   const { resources } = await initTranslations({ locale });
 
   return (
-    <html lang={locale} className={'!bg-black w-full'}>
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-700 antialiased w-full`}>
-        <TranslationsProvider locale={locale} resources={resources}>
-          <PrimeReactProvider value={{ pt: Tailwind }}>
-            <Header/>
-            <BaseView className={'flex-row w-full'}>
-              <SideMenu />
-              {children}
-            </BaseView>
-          </PrimeReactProvider>
-        </TranslationsProvider>
+    <html lang={locale} className={'w-full !bg-black relative'}>
+      <body className={`${geistSans.variable} ${geistMono.variable} w-full bg-slate-700 antialiased`}>
+        <StyleProvider>
+          <Providers>
+            <TranslationsProvider locale={locale} resources={resources}>
+              <LoadingProvider/>
+              <Header />
+              <BaseView className={'w-full flex-row'}>
+                <SideMenu />
+                {children}
+              </BaseView>
+            </TranslationsProvider>
+          </Providers>
+        </StyleProvider>
       </body>
     </html>
   );
