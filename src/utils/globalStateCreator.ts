@@ -16,12 +16,6 @@ export function createGlobalState<T>(queryKey: unknown, initialData: T | null = 
     });
 
     function setData(payload: Partial<T> | ((prev: Partial<T>) => T)) {
-      if (typeof payload === 'function') {
-        payload(data as T);
-
-        return;
-      }
-
       queryClient.setQueryData([queryKey], payload);
     }
 

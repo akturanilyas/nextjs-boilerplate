@@ -1,10 +1,11 @@
 import { City } from '@/types/city.type';
-import { apiClient } from '@/services/AxiosService';
+import { globalAxiosService } from '@/services/AxiosService';
+import { HttpMethod } from '@/enums/HttpMethod';
 
 export class CityService {
- static async getAll({ signal }: { signal?: AbortSignal}): Promise<Array<City>> {
-   const { data } = await apiClient.get('cities', { signal });
+  static async getAll(): Promise<Array<City>> {
+    const { data } = await globalAxiosService.req({ url: '/cities', method: HttpMethod.GET });
 
-   return data;
+    return data;
   }
 }

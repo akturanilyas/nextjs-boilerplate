@@ -15,8 +15,6 @@ export const ExampleForm: FC = () => {
   const { data: user } = useUserState();
   const { data: cities } = useCities();
 
-  console.log(cities);
-
   return (
     <Form className={'flex flex-col gap-8'} onSubmit={form.handleSubmit((data) => console.log(data))}>
       <Input form={form} name={'input'} label={'Input Test'} placeholder={'Input Placeholder'} />
