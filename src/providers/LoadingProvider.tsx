@@ -1,39 +1,23 @@
 'use client';
+
 import BaseText from '@/components/base/text/BaseText';
 import BaseView from '@/components/base/view/BaseView';
 import { useLoadingState } from '@/states/loading';
-import { useEffect, useState } from 'react';
-import eventProvider from '@/providers/EventProvider';
+import useRunOnceInStrictMode from '@/hooks/useRunOnceInStrictMode';
+import globalAxiosService from '@/services/AxiosService';
 
 const LoadingProvider = () => {
   const { data: loadingState, setData } = useLoadingState();
 
-  useState();
-
-  useEffect(() => {
-    eventProvider.addListener({
-      eventName: 'increaseLoading',
-      callback() {
-        setData((countState) => ({ count: (countState.count || 0) + 1 }));
-      },
+  useRunOnceInStrictMode(() => {
+    globalAxiosService.setBeforeRequestCallbacks({
+      key: 'before-request',
+      callback: () => setData((prev) => ({ ...prev, count: prev.count! + 1 })),
     });
-
-    eventProvider.addListener({
-      eventName: 'decreaseLoading',
-      callback() {
-        setData((countState) => ({ count: (countState.count || 0) - 1 }));
-      },
+    globalAxiosService.setAfterRequestCallbacks({
+      key: 'after-request',
+      callback: () => setData((prev) => ({ ...prev, count: prev.count! - 1 })),
     });
-
-    return () => {
-      eventProvider.removeAllListeners({
-        eventName: 'increaseLoading',
-      });
-
-      eventProvider.removeAllListeners({
-        eventName: 'decreaseLoading',
-      });
-    };
   }, []);
 
   return loadingState?.count ? (
