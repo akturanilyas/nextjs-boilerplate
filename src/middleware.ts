@@ -1,9 +1,11 @@
-import { i18nRouter } from 'next-i18n-router';
-import { NextRequest } from 'next/server';
-import { i18nConfig } from '@/i18nConfig';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  return i18nRouter(request, i18nConfig);
+  const response = NextResponse.next();
+
+  response.cookies.set('locale', 'tr');
+
+  return response;
 }
 
 export const config = {

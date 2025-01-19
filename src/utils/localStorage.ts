@@ -1,17 +1,19 @@
-export function setItem(key: string, value: unknown) {
-  try {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.log(error);
-  }
-}
+'use client';
 
-export function getItem<T extends Record<string, unknown>>(key: string) {
-  try {
-    const item = window.localStorage.getItem(key);
+import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 
-    return item ? JSON.parse(item) as T : undefined;
-  } catch (error) {
-    console.log(error);
-  }
-}
+const createNoopStorage = () => ({
+  getItem(key: string): Promise<string | null> {
+    return Promise.resolve(null);
+  },
+  setItem(key: string, value: string) {
+    return Promise.resolve(value);
+  },
+  removeItem(key: string): Promise<void> {
+    return Promise.resolve();
+  },
+});
+
+const storage = typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage();
+
+export default storage;

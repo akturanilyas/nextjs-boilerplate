@@ -3,14 +3,12 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 import initTranslations from '@/utils/i18n';
 import { TranslationsProvider } from '@/providers/TranslationProvider';
-import Tailwind from 'primereact/passthrough/tailwind';
 import SideMenu from '@/components/side-menu/SideMenu';
 import BaseView from '@/components/base/view/BaseView';
 import Header from '@/components/header/Header';
-import Providers from '@/providers/Providers';
 import { StyleProvider } from '@/providers/StyleProvider';
-import '../globals.css';
-import LoadingProvider from '@/providers/LoadingProvider';
+import './globals.css';
+import StoreProvider from '@/providers/StoreProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -39,19 +37,18 @@ export default async function RootLayout(
   const { resources } = await initTranslations({ locale });
 
   return (
-    <html lang={locale} className={'w-full !bg-black relative'}>
+    <html lang={locale} className={'relative w-full !bg-black'}>
       <body className={`${geistSans.variable} ${geistMono.variable} w-full bg-slate-700 antialiased`}>
         <StyleProvider>
-          <Providers>
+          <StoreProvider>
             <TranslationsProvider locale={locale} resources={resources}>
-              <LoadingProvider/>
               <Header />
               <BaseView className={'w-full flex-row'}>
                 <SideMenu />
                 {children}
               </BaseView>
             </TranslationsProvider>
-          </Providers>
+          </StoreProvider>
         </StyleProvider>
       </body>
     </html>

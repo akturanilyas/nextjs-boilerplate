@@ -1,19 +1,29 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/base/button/Button';
 import Form from '@/components/base/form/Form';
 import { Input } from '@/components/form-elements/input/Input';
 import { Radio } from '@/components/form-elements/radio/Radio';
 import Select from '@/components/form-elements/select/Select';
-import { useUserState } from '@/states/user';
-import { useCities } from '@/queries/CityQueries';
+import { useGetCitiesQuery } from '@/api/base/services/activity/activityService';
+import { setUser } from '@/states/slices/mainSlice';
+import { useMain } from '@/hooks/useSlices';
+import { useAppDispatch } from '@/hooks/useRedux';
 
 export const ExampleForm: FC = () => {
   const form = useForm();
-  const { data: user } = useUserState();
-  const { data: cities } = useCities();
+
+  const dispatch = useAppDispatch();
+  const { user } = useMain();
+  const { data: cities } = useGetCitiesQuery({});
+
+  console.log('user artık setlen', user);
+
+  useEffect(() => {
+    dispatch(setUser(1));
+  }, []);
 
   return (
     <Form className={'flex flex-col gap-8'} onSubmit={form.handleSubmit((data) => console.log(data))}>
