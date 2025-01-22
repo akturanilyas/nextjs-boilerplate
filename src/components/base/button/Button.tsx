@@ -5,10 +5,10 @@ import { button } from '@/components/base/button/Button.style';
 import { Button as PrimeButton } from 'primereact/button';
 
 export const Button: FC<ButtonProps> = (props) => {
-  const { className, children } = props;
+  const { className, variant, children } = props;
 
   return (
-    <PrimeButton {...props} className={cn(button({ className }))}>
+    <PrimeButton {...props} className={cn(button({ className, variant }), 'p-0')} pt={{ root: { className: cn(button({ className, variant })) } }} >
       {children}
     </PrimeButton>
   );

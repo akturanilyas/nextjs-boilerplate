@@ -399,7 +399,6 @@ export default [
         },
       ],
 
-      'no-negated-condition': 'error',
       'no-new-object': 'error',
       'no-whitespace-before-property': 'error',
       'no-trailing-spaces': 'error',
@@ -620,6 +619,7 @@ export default [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       'no-negated-condition': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
 ];

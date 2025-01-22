@@ -1,5 +1,15 @@
 {
-  "test": "Merhaba Dünya",
-  "test2": "Merhaba {{name}}",
-  "test3": "Merhaba {{name}} {{surname}}"
+  "GLOBAL": {
+    "FORM_ELEMENTS": {
+      "ERRORS": {
+        "REQUIRED": {
+          "EMAIL_ADDRESS": ""
+        },
+        "LIMITATIONS": {
+          "PHONE": "Lütfen geçerli bir telefon numarası giriniz.",
+          "TCKN": "Lütfen geçerli kimlik bilginizi giriniz."
+        }
+      }
+    }
+  }
 }

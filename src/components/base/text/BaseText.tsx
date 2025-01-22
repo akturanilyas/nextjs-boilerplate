@@ -1,19 +1,14 @@
 import { FC } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { TextProps } from './BaseText.interface';
 import Trans from '@/components/base/text/Trans';
+import { cn } from '@/utils/common.util';
+import { textStyle } from '@/components/base/text/BaseText.style';
 
 const BaseText: FC<TextProps> = (props) => {
-  const { text, options, className, customContent } = props;
-
-  const classes = twMerge(`
-    text-slate
-    dark:text-slate-200
-    ${className || ''}
-  `);
+  const { text, options, className, customContent, size } = props;
 
   return (
-    <span className={classes}>
+    <span className={cn(textStyle({ className, size }))}>
       <Trans i18nKey={text} values={options}>
         {customContent}
       </Trans>

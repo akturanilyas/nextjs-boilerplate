@@ -1,25 +1,20 @@
 'use client';
 
 import { PrimeReactProvider } from 'primereact/api';
-import { usePassThrough } from 'primereact/passthrough';
 import Tailwind from 'primereact/passthrough/tailwind';
 import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-export const StyleProvider = ({ children }: { children: ReactNode }) => {
-  const CustomTailwind = usePassThrough(
-    Tailwind,
-    {
-      panel: {
-        title: {
-          className: 'leading-none font-light text-2xl',
-        },
+export const StyleProvider = ({ children }: { children: ReactNode }) => (
+  <PrimeReactProvider
+    value={{
+      pt: {
+        ...Tailwind,
       },
-    },
-    {
-      mergeSections: true,
-      mergeProps: false,
-    },
-  );
-
-  return <PrimeReactProvider value={{ pt: CustomTailwind, unstyled: true }}>{children}</PrimeReactProvider>;
-};
+      unstyled: true,
+      ptOptions: { mergeSections: true, mergeProps: true, classNameMergeFunction: twMerge },
+    }}
+  >
+    {children}
+  </PrimeReactProvider>
+);

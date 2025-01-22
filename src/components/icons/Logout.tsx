@@ -1,0 +1,4 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const SvgLogout = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 25" {...props}><g stroke="#8A8A8E" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.784} clipPath="url(#logout_svg__a)"><path d="M17.996 19.818v1.661a1.66 1.66 0 0 1-1.662 1.662H4.704a1.66 1.66 0 0 1-1.66-1.662V3.204a1.66 1.66 0 0 1 1.66-1.661h11.63a1.66 1.66 0 0 1 1.662 1.661v1.662M9.689 12.344h11.63" /><path d="m17.996 9.02 3.322 3.322-3.322 3.323" /></g><defs><clipPath id="logout_svg__a"><path d="M0 .5h24v24H0z" /></clipPath></defs></svg>;
+export default SvgLogout;

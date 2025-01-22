@@ -1,33 +1,24 @@
 'use client';
 
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/base/button/Button';
 import Form from '@/components/base/form/Form';
-import { Input } from '@/components/form-elements/input/Input';
+import { TextInput } from '@/components/form-elements/input/TextInput';
 import { Radio } from '@/components/form-elements/radio/Radio';
 import Select from '@/components/form-elements/select/Select';
-import { useGetCitiesQuery } from '@/api/base/services/activity/activityService';
-import { setUser } from '@/states/slices/mainSlice';
-import { useMain } from '@/hooks/useSlices';
-import { useAppDispatch } from '@/hooks/useRedux';
+import BaseView from '@/components/base/view/BaseView';
 
 export const ExampleForm: FC = () => {
   const form = useForm();
 
-  const dispatch = useAppDispatch();
-  const { user } = useMain();
-  const { data: cities } = useGetCitiesQuery({});
-
-  console.log('user artık setlen', user);
-
-  useEffect(() => {
-    dispatch(setUser(1));
-  }, []);
-
   return (
-    <Form className={'flex flex-col gap-8'} onSubmit={form.handleSubmit((data) => console.log(data))}>
-      <Input form={form} name={'input'} label={'Input Test'} placeholder={'Input Placeholder'} />
+    <Form className={'flex flex-col gap-8 pt-2'} onSubmit={form.handleSubmit((data) => console.log(data))}>
+      <BaseView className={'flex-row gap-4'}>
+        <TextInput form={form} name={'input'} label={'Input Test'} placeholder={'Placeholder'} errorMessage={{}} />
+        <TextInput form={form} name={'input'} label={'Input Test'} placeholder={'Placeholder'} errorMessage={{}} />
+        <TextInput form={form} name={'input'} label={'Input Test'} placeholder={'Placeholder'} disabled errorMessage={{}} />
+      </BaseView>
       <Radio
         form={form}
         defaultValue={'radio-1'}
@@ -46,8 +37,6 @@ export const ExampleForm: FC = () => {
           { label: 'Select 2', value: 'select-2' },
         ]}
       />
-
-      <Select form={form} label={'City'} name={'city'} options={cities || []} className={'max-h-96'} />
 
       <Button label={'submit'} type='submit' className='w-full'></Button>
     </Form>

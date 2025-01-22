@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 import initTranslations from '@/utils/i18n';
 import { TranslationsProvider } from '@/providers/TranslationProvider';
-import SideMenu from '@/components/side-menu/SideMenu';
 import BaseView from '@/components/base/view/BaseView';
 import Header from '@/components/header/Header';
 import { StyleProvider } from '@/providers/StyleProvider';
@@ -37,14 +36,13 @@ export default async function RootLayout(
   const { resources } = await initTranslations({ locale });
 
   return (
-    <html lang={locale} className={'relative w-full !bg-black'}>
-      <body className={`${geistSans.variable} ${geistMono.variable} w-full bg-slate-700 antialiased`}>
+    <html lang={locale} className={'relative w-full'}>
+      <body className={`${geistSans.variable} ${geistMono.variable} h-screen w-full`}>
         <StyleProvider>
           <StoreProvider>
             <TranslationsProvider locale={locale} resources={resources}>
-              <Header />
-              <BaseView className={'w-full flex-row'}>
-                <SideMenu />
+              <BaseView className={'h-full w-full flex-col bg-white'}>
+                <Header />
                 {children}
               </BaseView>
             </TranslationsProvider>

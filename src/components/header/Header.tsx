@@ -1,22 +1,46 @@
 'use client';
 
-import React from 'react';
-import { Menubar } from 'primereact/menubar';
-import { Avatar } from 'primereact/avatar';
-import Image from 'next/image';
+import React, { useEffect } from 'react';
+
 import BaseView from '@/components/base/view/BaseView';
+import Compi from '@/components/icons/Compi';
+import BaseText from '@/components/base/text/BaseText';
+import { Logout } from '@/components/icons';
+import { Button } from '@/components/base/button/Button';
+import { useMain } from '@/hooks/useSlices';
+import { useAppDispatch } from '@/hooks/useRedux';
+import { setUser } from '@/states/slices/mainSlice';
+import { useLogoutMutation } from '@/api/base/services/activity/authService';
 
 export default function Header() {
-  const start = <Image alt='logo' src='/vercel.svg' height='40' width={40} className='mr-2'></Image>;
-  const end = (
-    <BaseView className='align-items-center flex gap-2'>
-      <Avatar image='https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png' shape='circle' />
-    </BaseView>
-  );
-
   return (
-    <BaseView className=''>
-      <Menubar className={'rounded-none bg-grey-100'} start={start} end={end} />
+    <BaseView className='flex-row bg-white p-5'>
+      <Compi width={115} />
+      <BaseView className={'flex-1 flex-row justify-end'}>
+        <AuthSection />
+      </BaseView>
     </BaseView>
   );
 }
+
+export const AuthSection = () => {
+  const { user } = useMain();
+  const [logout] = useLogoutMutation();
+
+  const dispatch = useAppDispatch();
+
+  if (!user || !user.first_name) {
+    return null;
+  }
+
+  const onLogout = () => {
+    logout();
+  };
+
+  return (
+    <Button variant={'inline'} className={'flex-row items-center justify-end gap-2.5 p-0'} onClick={onLogout}>
+      <BaseText text={`${user.first_name} ${user.last_name}`} className={'text-secondary'} />
+      <Logout />
+    </Button>
+  );
+};
